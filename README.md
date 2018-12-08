@@ -1,6 +1,6 @@
 # React Native Music App
 
-#### currently in development mode (issue with music libraries
+#### currently in development mode (issue with music libraries)
 
 ### to clone this repo:
 
