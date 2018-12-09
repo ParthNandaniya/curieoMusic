@@ -96,7 +96,8 @@ class PlayerScreen extends Component {
     onBackPress = () => {
         if(!this.props.repeatOn) {
             if(this.props.shuffleOn) {
-                this.onShuffleButtonPress();
+                const random = Math.random()*music.music.length;
+                this.props.onSelectedTrackChange(Math.floor(random));
             } else {
                 if(this.props.currentPosition < 10 && this.props.selectedTrack > 0 ) {
                     //////////////////
@@ -126,7 +127,8 @@ class PlayerScreen extends Component {
     onNextPress = async () => {
         if(!this.props.repeatOn) {
             if(this.props.shuffleOn) {
-                this.onShuffleButtonPress();
+                const random = Math.random()*music.music.length;
+                this.props.onSelectedTrackChange(Math.floor(random));
             } else {
                 if(this.props.selectedTrack < music.music.length - 1) {
                     //////////////////////////
