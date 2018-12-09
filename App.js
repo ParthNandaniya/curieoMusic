@@ -14,6 +14,7 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Remote debug
 // console.ignoredYellowBox = [
 //     'Setting a timer'
 // ]
+console.disableYellowBox = true;
 
 class App extends Component {
 
