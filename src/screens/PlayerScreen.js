@@ -76,9 +76,9 @@ class PlayerScreen extends Component {
         // console.log('player ' + this.refs);
         
     }
-    componentWillReceiveProps (nextProps) {
-        console.log(nextProps);
-    }
+//     componentWillReceiveProps (nextProps) {
+//         console.log(nextProps);
+//     }
 
     // setDuration = (track) => {
     //     this.props.setTotalLength(track.duration);
