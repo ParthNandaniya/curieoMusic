@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
+	Image,
 	StyleSheet,
 	TouchableOpacity
 } from 'react-native';
@@ -13,7 +14,9 @@ class TrackDetail extends Component {
 				<TouchableOpacity
 					onPress={this.props.onAddPress}
 				>
-					<Text style={{color: "white"}} > add button </Text>
+					<Image style={styles.button}
+        				source={require('../assets/img/ic_add_circle_outline_white.png')} 
+        			/>
 				</TouchableOpacity>
 				<View style={styles.details} >
 					<Text 
@@ -32,7 +35,11 @@ class TrackDetail extends Component {
 				<TouchableOpacity
 					onPress={this.props.onMoreButtonPress}
 				>
-					<Text style={{color: "white"}} > More Button </Text>
+					<View style={styles.moreButton}>
+				        <Image style={styles.moreButtonIcon}
+				          source={require('../assets/img/ic_more_horiz_white.png')} 
+				        />
+				    </View>
 				</TouchableOpacity>
 			</View>
 		);
@@ -64,6 +71,23 @@ const styles = StyleSheet.create({
 		color: 'rgba(255, 255, 255, 0.70)',
 		textAlign: 'center',
 		fontSize: 13
+	},
+	button: {
+    	opacity: 0.72,
+	},
+	moreButton: {
+	    borderColor: 'rgb(255, 255, 255)',
+	    borderWidth: 2,
+	    opacity: 0.72,
+	    borderRadius: 10,
+	    width: 20,
+	    height: 20,
+	    alignItems: 'center',
+	    justifyContent: 'center',
+	},
+	moreButtonIcon: {
+	    height: 17,
+	    width: 17,
 	}
 });
 

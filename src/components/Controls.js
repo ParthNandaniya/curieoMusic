@@ -15,40 +15,79 @@ class Controls extends Component {
 	render() {
 		return (
 			<View style={styles.container} >
-				<TouchableOpacity
-					onPress={this.props.onRepeatPress}
-				>
-					<Text> Repeat </Text>
-				</TouchableOpacity>
+				{!this.props.repeatOn ? 
+					<TouchableOpacity
+						onPress={this.props.onRepeatPress}
+						activeOpacity={0.0}
+					>
+						<Image style={[styles.secondaryControl, this.props.repeatOn ? [] : styles.off]}
+        					source={require('../assets/img/ic_repeat_white.png')}
+        				/>
+					</TouchableOpacity>
+					:
+					<TouchableOpacity
+						onPress={this.props.onRepeatPress}
+						activeOpacity={0.0}
+					>
+						<Image style={[styles.secondaryControl, this.props.repeatOn ? [] : styles.off]}
+        					source={require('../assets/img/ic_repeat_white.png')}
+        				/>
+					</TouchableOpacity>
+				}
+				<View style={{width: 40}} />
 				<TouchableOpacity
 					onPress={this.props.onBackPress}
 				>
-					<Text> back </Text>
+					<Image source={require('../assets/img/ic_skip_previous_white_36pt.png')}/>
 				</TouchableOpacity>
+				<View style={{width: 20}} />
 				{!this.props.paused ? 
 					<TouchableOpacity
 						onPress={this.props.onPausePress}
 					>
-						<Text> pause </Text>
+						<View style={styles.playButton}>
+				         	<Image source={require('../assets/img/ic_pause_white_48pt.png')}/>
+				        </View>
 					</TouchableOpacity>
 					:
 					<TouchableOpacity
 						onPress={this.props.onPlayPress}
 					>
-						<Text> play </Text>
+						<View style={styles.playButton}>
+				        	<Image source={require('../assets/img/ic_play_arrow_white_48pt.png')}/>
+				        </View>
 					</TouchableOpacity>
 				}
-				
+				<View style={{width: 20}} />
 				<TouchableOpacity
 					onPress={this.props.onNextPress}
+					disabled={this.props.forwardDisabled}
 				>
-					<Text> next </Text>
+					<Image style={[this.props.forwardDisabled && {opacity: 0.3}]}
+        				source={require('../assets/img/ic_skip_next_white_36pt.png')}
+        			/>
 				</TouchableOpacity>
-				<TouchableOpacity
-					onPress={this.props.onShufflePress}
-				>
-					<Text> shuffle </Text>
-				</TouchableOpacity>
+				<View style={{width: 40}} />
+				{!this.props.shuffleOn ? 
+					<TouchableOpacity
+						activeOpacity={0.0}
+						onPress={this.props.onShufflePress}
+					>
+						<Image style={[styles.secondaryControl, this.props.shuflleOn ? [] : styles.off]}
+        					source={require('../assets/img/ic_shuffle_white.png')}
+        				/>
+					</TouchableOpacity>
+					:
+					<TouchableOpacity
+						activeOpacity={0.0}
+						onPress={this.props.onShufflePress}
+					>
+						<Image style={[styles.secondaryControl, this.props.shuffleOn ? [] : styles.off]}
+				        	source={require('../assets/img/ic_shuffle_white.png')}
+				        />
+
+					</TouchableOpacity>
+				}
 			</View>
 		);
 	}
@@ -65,12 +104,27 @@ class Controls extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 12,
-    paddingLeft: 24,
-    paddingRight: 24,
-    paddingBottom: 24,
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 8,
   },
+  playButton: {
+    height: 72,
+    width: 72,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 72 / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  secondaryControl: {
+    height: 18,
+    width: 18,
+  },
+  off: {
+    opacity: 0.30,
+  }
 })
 
 export default Controls;

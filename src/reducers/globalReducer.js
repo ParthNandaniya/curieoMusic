@@ -1,5 +1,4 @@
 import {
-	CHANGE_TRACK,
 	SET_TOTAL_LENGTH,
 	ON_SLIDING_START,
 	ON_CURRENT_TIME_CHANGE,
@@ -10,7 +9,8 @@ import {
 	ON_CHANGING_TOGGLE,
 	ON_NEXT_PRESS,
 	CHANGE_CURRENT_POSITION,
-	ON_BACK_PRESS
+	ON_BACK_PRESS,
+	SELECTED_TRACK_CHANGE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -20,7 +20,8 @@ const INITIAL_STATE = {
     totalLength: 1,
 	repeatOn: false,
     shuffleOn: false,
-    isChanging: false
+    isChanging: false,
+    trackList: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -61,8 +62,7 @@ export default (state = INITIAL_STATE, action) => {
 				selectedTrack: action.payload - 1,
 				totalLength: 1
 			}
-
-		case CHANGE_TRACK:
+		case SELECTED_TRACK_CHANGE:
 			return { ...state, selectedTrack: action.payload };
 		default: 
 			return state;

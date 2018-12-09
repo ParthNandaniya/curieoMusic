@@ -1,5 +1,4 @@
 import {
-	CHANGE_TRACK,
 	SET_TOTAL_LENGTH,
 	ON_SLIDING_START,
 	ON_CURRENT_TIME_CHANGE,
@@ -10,7 +9,8 @@ import {
 	ON_CHANGING_TOGGLE,
 	ON_NEXT_PRESS,
 	CHANGE_CURRENT_POSITION,
-	ON_BACK_PRESS
+	ON_BACK_PRESS,
+	SELECTED_TRACK_CHANGE
 } from './types';
 
 export const setTotalLength = (duration) => {
@@ -92,3 +92,9 @@ export const onBackPress = () => (dispatch, getState) => {
 	});
 }
 
+export const onSelectedTrackChange = (random) => {
+	return ({
+		type: SELECTED_TRACK_CHANGE,
+		payload: random
+	});
+}

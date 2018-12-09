@@ -6,11 +6,11 @@ import {
 } from 'react-navigation';
 
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import SplashScreen from '../screens/SplashScreen';
+import SplashScreen from '../screens/SplashScreen';
 import PlayerScreen from '../screens/PlayerScreen';
 
 const AppNavigation = createSwitchNavigator({
-	// splash: { screen: SplashScreen },
+	splash: { screen: SplashScreen },
 	player: { screen: PlayerScreen },
 	// auth: AuthStack
 },	{

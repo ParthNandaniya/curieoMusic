@@ -11,7 +11,7 @@ import Album from '../components/Album';
 import TrackDetails from '../components/TrackDetails';
 import SeekBar from '../components/SeekBar';
 import Controls from '../components/Controls';
-// import Video from 'react-native-video';
+import Video from 'react-native-video';
 // import TrackPlayer from 'react-native-track-player';
 // import Sound from 'react-native-sound';
 import SoundPlayer from 'react-native-sound-player';
@@ -27,7 +27,8 @@ import {
     isChangingToggle,
     onNextPress,
     changeCurrentPosition,
-    onBackPress
+    onBackPress,
+    onSelectedTrackChange
 } from '../actions';
 
 import music from '../music.json';
@@ -86,44 +87,62 @@ class PlayerScreen extends Component {
         time = Math.round(time);
         ////////////////////////////////////////////////////////////////////
 
-        // this.refs.audio && this.refs.audio.seek(time);
+        this.refs.audio && this.refs.audio.seek(time);
         // this.player.seek(time);
 
         this.props.onCurrentTimeChange(time);
     }
 
     onBackPress = () => {
-        if(this.props.currentPosition < 10 && this.props.selectedTrack > 0 ) {
-            //////////////////
-            // this.refs.audio && this.refs.audio.seek(0);
-            // this.player.seek(0);
+        if(!this.props.repeatOn) {
+            if(this.props.shuffleOn) {
+                this.onShuffleButtonPress();
+            } else {
+                if(this.props.currentPosition < 10 && this.props.selectedTrack > 0 ) {
+                    //////////////////
+                    this.refs.audio && this.refs.audio.seek(0);
+                    // this.player.seek(0);
 
-            this.props.isChangingToggle();
-            this.props.onBackPress();
+                    this.props.isChangingToggle();
+                    this.props.onBackPress();
 
-            /////////////////
-            const track = music.music[this.props.selectedTrack];
-            this.props.setTotalLength(track.duration);
+                    /////////////////
+                    const track = music.music[this.props.selectedTrack];
+                    this.props.setTotalLength(track.duration);
+                } else {
+                    /////////////
+                    this.refs.audio.seek(0);
+                    // this.player.seek(0);
+
+                    this.props.changeCurrentPosition(0);
+                }
+            }
         } else {
-            /////////////
-            // this.refs.audio.seek(0);
-            // this.player.seek(0);
-
+            this.refs.audio.seek(0);
             this.props.changeCurrentPosition(0);
         }
     }
 
     onNextPress = async () => {
-        if(this.props.selectedTrack < music.music.length - 1) {
-            //////////////////////////
-            // this.refs.audio && this.refs.audio.seek(0);
-            // this.player.seek(0);
+        if(!this.props.repeatOn) {
+            if(this.props.shuffleOn) {
+                this.onShuffleButtonPress();
+            } else {
+                if(this.props.selectedTrack < music.music.length - 1) {
+                    //////////////////////////
+                    this.refs.audio && this.refs.audio.seek(0);
+                    // this.player.seek(0);
 
-            this.props.isChangingToggle();
-            this.props.onNextPress();
-            /////////////////
-            const track = music.music[this.props.selectedTrack];
-            this.props.setTotalLength(track.duration);
+                    this.props.isChangingToggle();
+                    this.props.onNextPress();
+                    /////////////////
+                    const track = music.music[this.props.selectedTrack];
+                    this.props.setTotalLength(track.duration);
+                }
+            }
+        } else {
+            this.refs.audio.seek(0);
+            this.props.changeCurrentPosition(0);
         }
     }
 
@@ -136,8 +155,12 @@ class PlayerScreen extends Component {
         this.props.setTotalLength(track.duration);
     }
     setTime = (data) => {
-        console.log(data);
-        this.props.changeCurrentPosition(data.currentTime);
+        this.props.changeCurrentPosition(Math.floor(data.currentTime));
+    }
+    onShuffleButtonPress = () => {
+        const random = Math.random()*music.music.length;
+        this.props.onShufflePress();
+        this.props.onSelectedTrackChange(Math.floor(random));
     }
     // video = () => {
         // const track = music.music[this.props.selectedTrack];
@@ -178,18 +201,28 @@ class PlayerScreen extends Component {
     // }
     video = () => {
         if(!this.props.changing) {
-            // return (<Video source={{uri: 'http://storage.googleapis.com/automotive-media/Jazz_In_Paris.mp3'}} 
-            //             ref="audio"
-            //             paused={this.props.paused}              
-            //             resizeMode="cover"          
-            //             repeat={true}                
-            //             onLoadStart={this.loadStart} // Callback when video starts to load
-            //             onLoad={this.setDuration}   
-            //             onProgress={this.setTime} 
-            //             onEnd={this.onEnd}           // Callback when playback finishes
-            //             onError={this.videoError}    // Callback when video cannot be loaded
-            //             style={styles.audio} />);
-            return (<Text> audio not working </Text>)
+            // if(this.props.shuffleOn) {
+            //     const random = Math.random()*music.music.length;
+            //     this.props.onSelectedTrackChange(Math.floor(random));
+            //     const track = music.music[this.props.selectedTrack];
+            //     const source = 'http://storage.googleapis.com/automotive-media/' + track.source;
+            // } else {
+                const track = music.music[this.props.selectedTrack];
+                const source = 'http://storage.googleapis.com/automotive-media/' + track.source;
+            // }
+            return (<Video source={{uri: source}} 
+                        ref="audio"
+                        paused={this.props.paused}              
+                        resizeMode="cover"          
+                        repeat={this.props.repeatOn}                
+                        onLoadStart={this.loadStart} // Callback when video starts to load
+                        onLoad={this.setDuration}   
+                        onProgress={this.setTime} 
+                        playInBackground={true}
+                        onEnd={this.onNextPress}          
+                        onError={this.videoError}    // Callback when video cannot be loaded
+                        style={styles.audio} />);
+            // return (<Text>audio not working</Text>);
         }
         return null;
     }
@@ -220,7 +253,8 @@ class PlayerScreen extends Component {
                     onPlayPress={this.props.onPlayPress}
                     onPausePress={this.props.onPausePress}
                     onNextPress={this.onNextPress}
-                    onShufflePress={this.props.onShufflePress}
+                    onShufflePress={this.onShuffleButtonPress}
+                    forwardDisabled={!(this.props.selectedTrack < music.music.length - 1) ? true : false}
                 />
                 {this.video()}
                 <Text> main screen </Text>
@@ -232,7 +266,7 @@ class PlayerScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: 'rgb(4,4,4)',
+        backgroundColor: 'rgb(4,4,4)',
     },
     audio: {
         height: 0,
@@ -272,5 +306,6 @@ export default connect(mapStateToProps, {
     isChangingToggle,
     onNextPress,
     changeCurrentPosition,
-    onBackPress
+    onBackPress,
+    onSelectedTrackChange
 })(PlayerScreen);

@@ -1,6 +1,5 @@
-# React Native Gallery App
+# React Native curieoMusic App
 
-check package.json to see which library used in this project
 
 ### to download:
 
@@ -8,8 +7,8 @@ check package.json to see which library used in this project
 
 ### to clone this repo:
 
-1. ``` git clone https://github.com/ParthNandaniya/jsk.git ```
-1. ``` cd jsk ```
+1. ``` git clone https://github.com/ParthNandaniya/curieoMusic.git ```
+1. ``` cd curieoMusic ```
 1. ``` yarn install ```
 1. ``` react-native link ```
 1. ``` react-native run-android ```

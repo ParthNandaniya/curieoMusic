@@ -41,9 +41,6 @@ class SeekBar extends Component {
 		          thumbStyle={styles.thumb}
         		  trackStyle={styles.track}
 		        />
-		        <Text style={styles.text} >
-		          Value: {Math.round(this.props.currentPosition)}
-		        </Text>
 			</View>
 		);
 	}

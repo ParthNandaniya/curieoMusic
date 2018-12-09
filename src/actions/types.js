@@ -2,7 +2,7 @@
 //*************************************************** */
 //////////////////////////// GLOBAL /////////////////////
 //*************************************************** */
-export const CHANGE_TRACK = 'change_track';
+export const SELECTED_TRACK_CHANGE = 'selected_track_change';
 export const SET_TOTAL_LENGTH = 'set_total_length';
 export const ON_SLIDING_START = 'on_sliding_start';
 export const ON_CURRENT_TIME_CHANGE = 'on_current_time_change';
