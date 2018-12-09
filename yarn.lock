@@ -4734,11 +4734,6 @@ react-native-slider@^0.11.0:
   dependencies:
     prop-types "^15.5.6"
 
-react-native-sound-player@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.5.3.tgz#138d93853abb0217924df871a1ee3a2c837584d5"
-  integrity sha512-GL/qXuzwzlbYkUIxQS84VqcRctSDYr1Ez9iIHLUaPVecuJkbgqOYSWRjiLln9Tif8xb7OINcvPKQl7PtdcUfKw==
-
 react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.3.1.tgz#f9932d6bd5ba7dad75ef9335a68f13d85ba5bd56"
@@ -4746,10 +4741,10 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   dependencies:
     prop-types "^15.6.1"
 
-react-native-video@^2.2.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-2.3.1.tgz#d0df6f984945a67a0cbfc5ad45a5156e2472ccce"
-  integrity sha512-fTeVcp0IXL4MY/IjzISqdCCikWb5hfmkLfJTSa1B5qvmbca3R4gFvFICQO4CFvfetInra8P9g1LFnvmfMhy7Gw==
+react-native-video@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-3.0.0.tgz#7f2dcb0bb138665493a0ba2219ade464a825c911"
+  integrity sha512-c86Gne9/dA5Je1I07/cg5OHmKgf3vTZWISa0eRge4rCJHAe2NyTBNQODFqDdqS4LFio5AuWjV/+bP7/8FXLy1g==
   dependencies:
     keymirror "0.1.1"
     prop-types "^15.5.10"

@@ -11,10 +11,8 @@ import Album from '../components/Album';
 import TrackDetails from '../components/TrackDetails';
 import SeekBar from '../components/SeekBar';
 import Controls from '../components/Controls';
+// import Audio from '../components/Audio';
 import Video from 'react-native-video';
-// import TrackPlayer from 'react-native-track-player';
-// import Sound from 'react-native-sound';
-import SoundPlayer from 'react-native-sound-player';
 
 import {
     setTotalLength,
@@ -76,9 +74,9 @@ class PlayerScreen extends Component {
         // console.log('player ' + this.refs);
         
     }
-    componentWillReceiveProps (nextProps) {
-        console.log(nextProps);
-    }
+    // componentWillReceiveProps (nextProps) {
+    //     console.log(nextProps);
+    // }
 
     // setDuration = (track) => {
     //     this.props.setTotalLength(track.duration);
@@ -214,17 +212,24 @@ class PlayerScreen extends Component {
             // }
             return (<Video source={{uri: source}} 
                         ref="audio"
-                        paused={this.props.paused}              
+                        audioOnly={true}
+                        playInBackground={true}       
                         resizeMode="cover"          
                         repeat={this.props.repeatOn}                
                         onLoadStart={this.loadStart} // Callback when video starts to load
                         onLoad={this.setDuration}   
                         onProgress={this.setTime} 
-                        playInBackground={true}
+                        paused={this.props.paused}
                         onEnd={this.onNextPress}          
                         onError={this.videoError}    // Callback when video cannot be loaded
                         style={styles.audio} />);
-            // return (<Text>audio not working</Text>);
+            // return (
+            //     <Audio
+            //         selectedTrack={this.props.selectedTrack}
+            //         repeatOn={this.props.repeatOn}
+            //         paused={this.props.paused}
+            //     />
+            // );
         }
         return null;
     }
@@ -238,7 +243,11 @@ class PlayerScreen extends Component {
             	<StatusBar hidden={true} />
             	<Header title="player" />
             	<Album image={track.image} albumTitle={track.album} />
-            	<TrackDetails title={track.title} artist={track.artist} />
+            	<TrackDetails 
+                    title={track.title} 
+                    artist={track.artist} 
+                    onMoreButtonPress={() => this.props.navigation.navigate('trackList')}
+                />
             	<SeekBar 
                     trackLength={this.props.totalLength}
                     currentPosition={this.props.currentPosition}

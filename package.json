@@ -10,12 +10,7 @@
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-slider": "^0.11.0",
-    "react-native-sound-player": "^0.5.3",
-<<<<<<< HEAD
-    "react-native-video": "^2.2.0",
-=======
-    "react-native-video": "4.0.0",
->>>>>>> efcff0973c6f921e8e9c1c24151dcce9f7617c5f
+    "react-native-video": "3.0.0",
     "react-navigation": "^3.0.5",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",

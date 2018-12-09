@@ -14,7 +14,3 @@ export const ON_CHANGING_TOGGLE = 'on_changing_toggle';
 export const ON_NEXT_PRESS = 'on_next_press';
 export const CHANGE_CURRENT_POSITION = 'change_current_position'
 export const ON_BACK_PRESS = 'on_back_press';
-
-//*************************************************** */
-///////////////////////// DATABASE /////////////////////
-//*************************************************** */

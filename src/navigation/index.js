@@ -6,15 +6,15 @@ import {
 } from 'react-navigation';
 
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SplashScreen from '../screens/SplashScreen';
+import TrackListScreen from '../screens/TrackListScreen';
 import PlayerScreen from '../screens/PlayerScreen';
 
 const AppNavigation = createSwitchNavigator({
-	splash: { screen: SplashScreen },
-	player: { screen: PlayerScreen },
-	// auth: AuthStack
+	trackList: { screen: TrackListScreen },
+	player: { screen: PlayerScreen }
 },	{
 		initialRouteName: 'player',
+		headerMode: 'none',
 	}
 );
 

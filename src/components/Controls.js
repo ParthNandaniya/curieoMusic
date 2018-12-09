@@ -8,10 +8,6 @@ import {
 } from 'react-native';
 
 class Controls extends Component {
-	// componentWillMount () {
-	// 	console.log(this.props);	
-	// }
-	
 	render() {
 		return (
 			<View style={styles.container} >
@@ -92,15 +88,6 @@ class Controls extends Component {
 		);
 	}
 }
-// paused,
-//   shuffleOn,
-//   repeatOn,
-//   onPressPlay,
-//   onPressPause,
-//   onBack,
-//   onForward,
-//   onPressShuffle,
-//   onPressRepeat,
 
 const styles = StyleSheet.create({
   container: {
